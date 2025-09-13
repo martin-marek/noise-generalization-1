@@ -66,9 +66,8 @@ class CifarLoader:
 
         # optionally corrupt labels
         if corrupt_frac > 0:
-            corrupt_idx = torch.bernoulli(corrupt_frac * torch.ones(self.labels.shape))
-            print(f'{corrupt_idx.mean()=}')
-            corrupt_labels = torch.randint(0, 10, self.labels.shape)
+            corrupt_idx = torch.rand(self.labels.shape, device=device) < corrupt_frac
+            corrupt_labels = torch.randint(0, 10, self.labels.shape, device=device)
             self.labels = torch.where(corrupt_idx, corrupt_labels, self.labels)
 
     def __len__(self):
