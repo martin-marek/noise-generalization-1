@@ -46,8 +46,8 @@ def train(
     train_config = locals()
 
     # dataset
-    test_loader = CifarLoader("/tmp/cifar10", train=False, batch_size=2000, corrupt_frac=corrupt_frac)
-    train_loader = CifarLoader("/tmp/cifar10", train=True, batch_size=batch_size, aug=dict(flip=True, translate=2))
+    test_loader = CifarLoader("/tmp/cifar10", train=False, batch_size=2000)
+    train_loader = CifarLoader("/tmp/cifar10", train=True, batch_size=batch_size, aug=dict(flip=True, translate=2), corrupt_frac=corrupt_frac)
 
     # model
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
