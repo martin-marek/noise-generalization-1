@@ -42,6 +42,7 @@ def train(
     run_name = None,
     **kwargs,
 ):
+    torch.manual_seed(42)
     if len(kwargs) > 0: raise NameError(f'Unrecognized arguments: {kwargs}')
     train_config = locals()
 
